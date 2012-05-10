@@ -18,4 +18,4 @@ h2. To generate pages
 
 h2. To sync with server
 
-<code>rsync -v site/*.html user\@host.com:www/</code>
+<code>rsync -v site/*.html user@host.com:www/</code>
