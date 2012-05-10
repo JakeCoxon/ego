@@ -1,0 +1,12 @@
+---
+title: Pinball level editor
+date: 20120106
+tags: pinball
+---
+After an amazing start to the new year I have converted my pinball game to "libgdx":http://libgdx.badlogicgames.com. The process was pretty simple, only the OpenGL calls needed to be changed. This means I can run the game on my PC which then means I can record video of it.
+
+Entity IO is done, so far there is a sensor that senses balls and walls that can be toggled but I will add more.
+
+I also started work on an editor which is a separate application and which sends packets to the main game. Hopefully I can make it update Box2d's bodies in real time, although I might scrap this idea.
+
+!http://i.imgur.com/RGSwZ.png!

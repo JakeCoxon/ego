@@ -1,0 +1,21 @@
+h1. SiteGenerator
+
+Generates static HTML pages from ERB templates and textile documents
+
+* @site/_layouts/@ for layouts. default.html is default
+* @site/_pages/@ for static pages. 
+* @site/_posts/@ for blog posts - must have a @date@ argument.
+
+Pages + posts have optional YAML front matter which can be read in layouts by @arg[:key]@
+
+bc.. ---
+key: value
+---
+
+h2. To generate pages
+
+@ruby generate.rb@
+
+h2. To sync with server
+
+@rsync -v site/*.html user@host.com:www/@

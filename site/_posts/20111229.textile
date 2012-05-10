@@ -1,0 +1,28 @@
+---
+title: Updates to Pinball & Source
+date: 20111229
+tags: pinball, source
+---
+A feature that has been asked many times for "Source":http://jakemadethis.com/p/source is the ability to zoom. I've spent a few days adding pinch-to-zoom functionality but there are still a few bugs so the update won't be released for a while.
+
+fig. http://i.imgur.com/2GYEy.png
+
+For Pinball a lot has been done behind the scenes. Alpha/additive blending pretty much works.
+You can now score points :)
+The camera class now moves to follow the ball and automatically scales to fit the width of the game area inside the screen. This is good because Box2D wants units between 0.1 and 10 so I can say the ball is 0.3f radius and the camera will scale this so it looks good on the screen.
+I've started work on the XML parser and the io system. My plan is to have some sort of pattern matching so you can refer to an array of elements and apply events to them like so:
+
+bc.. 
+<light at="4,5" name="lights-0" />
+<light at="5,5" name="lights-1" />
+<light at="6,5" name="lights-2" />
+
+<sensor at="4,5" name="sensors-0" />
+<sensor at="5,5" name="sensors-1" />
+<sensor at="6,5" name="sensors-2" />
+
+<event for="sensors-#id" when="collision" target="lights-#id" action="toggle" />
+
+p. That would be totally cool.
+
+I really need some sort of level editor. I'm thinking of switching to "libgdx":http://libgdx.badlogicgames.com/ so I can write the game and run it on my desktop as well as android. This means I can have a built in level editor and use the mouse to add elements in the game rather than an imprecise finger on a phone screen.

@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Interpreters - JakeMadeThis</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/jquery.color.js"></script>
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/script.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31265649-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="row">
+    <div class="left side">
+      <ul class="nav" data-hover-color="#aa00ff">
+        <li><a href="home.html">jakemadethis</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="projects.html">projects</a></li>
+        <li><a href="experiments.html">experiments</a></li>
+      </ul>
+      
+      <ul class="tags" data-hover-color="#00aaff">
+      
+       <li><a href="projects.html">projects</a></li>
+      
+       <li><a href="javascript.html">javascript</a></li>
+      
+      </ul>
+      
+    </div>
+    <div class="center" data-hover-color="#ff6600">
+      
+      <div id="header">
+        <h1>Interpreters</h1>
+      </div>
+      <div id="page">
+        <h2>Brainf**k</h2>
+      <div class="image">
+        <img src="http://jakemadethis.com/interpreters/brainfuck.png" />
+        <span><a href="http://jakemadethis.com/interpreters/brainfuck.html">View Page</a> </span>
+      </div>
+<p><a href="http://en.wikipedia.org/wiki/Brainfuck">Brainfuck</a> is an esoteric programming language designed by Urban Muller in the 1990s for amusement rather than anything practical.</p>
+<p>There are only 8 commands in the language.</p>
+<ul>
+	<li>&gt; increment the data pointer</li>
+	<li>&lt; decrement the data pointer</li>
+	<li>+ increment the value at the data pointer</li>
+	<li>- decrement the value at the data pointer</li>
+	<li>. output the <span class="caps">ASCII</span> value of the data pointer</li>
+	<li>, input a value from the user</li>
+	<li>[ if the value of the pointer is zero, jump the the matching ] (if statements)</li>
+	<li>] if the value of the pointer is nonzero, jump the the matching [ (loops)</li>
+</ul>
+<p>A hello world program might look like this (from the Wikipedia page):</p>
+<pre><code>++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.</code></pre>
+<h2>Befunge</h2>
+      <div class="image">
+        <img src="http://jakemadethis.com/interpreters/befunge.png" />
+        <span><a href="http://jakemadethis.com/interpreters/befunge.html">View Page</a> </span>
+      </div>
+<p>Befunge is my favourite esoteric language, instead of commands being written on a one dimensional plane they are written in two dimensions with arrows that control the program counter. The memory is stack-based and there are a number of available instructions for manipulating the stack.</p>
+<p>Similarly to Brainfuck, each instruction is 1 character. Because of this, it is only possible to push 0-9 onto the stack. In order to get 99 on the stack you may do something like this:</p>
+<p>(This adds 9 and 2, and then multiplies by 9)<br /></p>
+<pre><code>92+9*</code></pre>
+<p>An infinite loop might look like this:<br /></p>
+<pre><code>&gt;         v</code>
+
+
+
+<code>^         &lt;
+</code></pre>
+      </div>
+
+      
+
+
+      <div id="footer" class="row">
+          jakemadethis
+      </div>
+
+    </div>
+    <div class="right side" data-hover-color="#ff6600">
+      
+      
+    </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+</body>
+</html>

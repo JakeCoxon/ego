@@ -1,0 +1,18 @@
+---
+title: Source
+tags: android, java, projects
+excerpt: An Android puzzle game
+---
+fig. http://i.imgur.com/Q3MAe.png
+
+!http://i.imgur.com/NFoFf.png! "Android Market link":https://market.android.com/details?id=com.jakemadethis.source
+
+A simple game with 1 goal, turn all tiles green by connecting them to the source
+
+A new take on the classic Pipes game - A simple game with one goal, turn all tiles green by connecting them to the source.
+
+Try to beat your friends' quickest time and least amount of turns. Different sized grids are available depending on your skill level.
+
+The game will save when you exit so you can pick it up where you left off.
+
+This game is free and without ads, please enjoy it.

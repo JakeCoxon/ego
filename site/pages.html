@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Pages - JakeMadeThis</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/jquery.color.js"></script>
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/script.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31265649-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="row">
+    <div class="left side">
+      <ul class="nav" data-hover-color="#aa00ff">
+        <li><a href="home.html">jakemadethis</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="projects.html">projects</a></li>
+        <li><a href="experiments.html">experiments</a></li>
+      </ul>
+      
+      <ul class="tags" data-hover-color="#00aaff">
+      
+       <li><a href="projects.html">projects</a></li>
+      
+       <li><a href="php.html">php</a></li>
+      
+      </ul>
+      
+    </div>
+    <div class="center" data-hover-color="#ff6600">
+      
+      <div id="header">
+        <h1>Pages</h1>
+      </div>
+      <div id="page">
+        <h1>What is this?</h1>
+<p>This is &#8216;pages&#8217;, a content management system that I wrote in <span class="caps">PHP</span> a few hours on 2009-05-23. Yes, I could have thought of a more descriptive name but really, why bother? Many tweaks have been done since it started. This is the software for my site right now.</p>
+<p>I incorporated a tagging system so that any pages tagged with another page will become children of the parent page and be shown at the bottom of that page. For an example, this page is tagged with the word &#8216;projects&#8217; and so it appears at the bottom of the projects page.</p>
+<h1>Source</h1>
+<p>The source is on github: <a href="https://github.com/JakeCoxon/Pages">Pages source</a></p>
+<h1>BBCode</h1>
+<p>I use an extended version of <a href="http://www.roonaan.nl/hotscripts/index.php?script=quickerubb.php">quickerUBB</a> . I don&#8217;t have any further information on it but it&#8217;s pretty awesome.</p>
+<h1>What else?</h1>
+<p>If a page doesn&#8217;t exist it will ask to make one, similar to Wikipedia or something. You need to be logged in to do this.</p>
+<h1>htaccess</h1>
+<p>In order to make the URLs look nicer you need to use this code</p>
+<pre><code>RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-z0-9-/]*)$  pages.php?page=$1 [L,QSA]</code></pre>
+      </div>
+
+      
+
+
+      <div id="footer" class="row">
+          jakemadethis
+      </div>
+
+    </div>
+    <div class="right side" data-hover-color="#ff6600">
+      
+      
+    </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+</body>
+</html>

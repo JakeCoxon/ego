@@ -1,0 +1,48 @@
+---
+title: Interpreters
+tags: projects, javascript
+excerpt: Two language interpeters written in JavaScript
+---
+h2. Brainf**k
+
+fig. "View Page":http://jakemadethis.com/interpreters/brainfuck.html | http://jakemadethis.com/interpreters/brainfuck.png
+
+"Brainfuck":http://en.wikipedia.org/wiki/Brainfuck is an esoteric programming language designed by Urban Muller in the 1990s for amusement rather than anything practical.
+
+There are only 8 commands in the language.
+
+
+* > increment the data pointer
+* < decrement the data pointer
+* + increment the value at the data pointer
+* - decrement the value at the data pointer
+* . output the ASCII value of the data pointer
+* , input a value from the user
+* [ if the value of the pointer is zero, jump the the matching ] (if statements)
+* ] if the value of the pointer is nonzero, jump the the matching [ (loops)
+
+A hello world program might look like this (from the Wikipedia page):
+
+bc.. 
+++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
+
+h2. Befunge
+
+fig. "View Page":http://jakemadethis.com/interpreters/befunge.html | http://jakemadethis.com/interpreters/befunge.png
+
+Befunge is my favourite esoteric language, instead of commands being written on a one dimensional plane they are written in two dimensions with arrows that control the program counter. The memory is stack-based and there are a number of available instructions for manipulating the stack.
+
+Similarly to Brainfuck, each instruction is 1 character. Because of this, it is only possible to push 0-9 onto the stack. In order to get 99 on the stack you may do something like this:
+
+(This adds 9 and 2, and then multiplies by 9)<br />
+
+bc. 92+9*
+
+An infinite loop might look like this:<br />
+
+bc.. 
+>         v
+
+
+
+^         <

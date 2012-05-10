@@ -1,0 +1,119 @@
+---
+title: Tetris
+tags: projects, c
+excerpt: A Tetris clone written for the PSP
+---
+
+fig. http://jakemadethis.com/tetris/tetris1.png
+
+This is a tetris clone written in C for Playstation Portable (Homebrew) with the PSPSDK and SDL library.
+
+It has the basic features of a regular tetris game plus ghost preview, highscores (by reading and writing to a binary file), hold pieces, and a preview of the next six blocks.
+
+The code is no longer up for download, sorry!
+
+h1. Tetrimonos
+
+The tetrimonos are stored as a 4 x 4 matrix (wide enough to fit the 4 x 1 tetrimono and rotate) so rotations are done simply by [x1,y1] = [y, x-3]. Checking if a block can drop down one row is done by looping through each cell and comparing it to the relevant cell on the main board. Once the block has been placed or has 'died', each full cell is copied onto the main board and replaced with the relevent number from one to seven (zero is an empty cell).
+
+One problem I had with rotating the block inside a 4 x 4 grid, the piece seemed to shift around when placed on the main board. To overcome this, the middle cell of each block was numbered 2. This is the index cell. The [x,y] co-ordinate refers to this point of the block. When the piece is rotated it keeps the position of the '2' cell, giving the illusion that the block is rotated around this point. 
+4 x 4 blocks are a special case where all cells are numbered 2.
+
+bc.. 
+ {{0, 1, 0, 0},	// Blue
+ {0, 2, 0, 0},
+ {1, 1, 0, 0},
+ {0, 0, 0, 0}},
+
+h1. Randomise System
+
+There was another problem I had when testing the game out, blocks were distributed very unrealistically, and sometimes making the game very hard to play. For example, people were getting very frustrated having three square blocks in a row.
+
+The new randomize system is made up using two 'bags' of all seven blocks, the blocks are sorted randomly and pulled one at a time when needed. Once one bag is emptied, it is replaced by the second bag and the second bag is refilled randomly.
+
+bc.. 
+// example
+bag1 = {6,3,7,1,5,2,4}
+bag2 = {2,6,4,3,1,5,7}
+
+p. This has a few effects, the first is that two of the same blocks are never more than thirteen apart (as apposed to potentially an infinite amount if using a real random system). 
+On the other hand, two blocks are rarely directly next to each other. This can only happen at the beginning and end of each bag, so the maximum times it can happen is every seven blocks. (And again, using a real random system you can potentially get an infinite number of the same blocks every go).
+
+bc.. 
+void generateRandomBag(int bag[7])
+{
+	// Fill the bag with -1s
+	memset(bag, -1, 7 * sizeof(int));
+	
+	int num = 0;
+	
+	// Loop untill all bag slots are empty
+	int block = 0;
+	while(num < 7)
+	{
+		int r = rand() % 7;	// random between 0 and 7
+		if(bag[r] == -1)	// Bag slot 'r' is empty
+		{
+			bag[r] = block;
+			block ++;
+			num ++;
+		}
+	}
+}
+
+h1. Scoring
+
+The score system looks something like this (pseudocode). Levels start at zero and increase after ten full lines up to a maximum of twenty.
+
+bc.. 
+if linesFilled == 1
+	score += 40 * (level+1)
+	
+if linesFilled == 2
+	score += 100 * (level+1)
+	
+if linesFilled == 3
+	score += 300 * (level+1)
+	
+if linesFilled == 4
+	score += 1200 * (level+1)
+
+p. As you can see, getting a four full lines (1200 points on level 0) is much more benificial than getting four seperate lines (160 points on level 0).
+
+h1. Highscores
+
+Highscores are saved in binary scores file and loaded into two parallel arrays at startup. Below of the functions for checking and inserting a new highscore.
+
+bc.. 
+int hasHighScore(int score)
+{
+	return score > score_scores[9];
+}
+
+// Returns the index where score is inserted or -1.
+int insertHighScore(char name[16], int score)
+{
+	int i;
+
+	// Start loop from the end and work backwards.
+	for(i = 9; i >= 0; i --)
+	{
+		if(i == 0 || score <= score_scores[i-1])
+		{
+			memcpy(&score_names[i], name, sizeof(char) * 16);
+			score_scores[i] = score;
+			
+			return i;
+			
+		}
+		else
+		{
+			memcpy(&score_names[i], score_names[i-1], sizeof(char) * 16);
+	
+			score_scores[i] = score_scores[i-1];
+		}
+	}
+	return -1;
+}
+
+p. This heavily relies on the fact that the array is already sorted from highest to lowest. Just got to make sure it never gets unsorted.

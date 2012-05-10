@@ -1,0 +1,23 @@
+---
+title: New game
+date: 20111220
+tags: pinball
+---
+fig. http://i.imgur.com/eJEXo.png
+
+I'm making a pinball game for android in opengl and box2d. This is the first time I've used either box2d or opengl but it seems to be going well at the moment.
+
+Currently I have a bunch of stuff implemented:
+* A camera that can move around (but doesn't yet), the level is created at a fixed size but I hope to make the camera move and resize to fit different phone screens etc
+* Bumpers bump the ball, flippers flip the ball.
+* The ball will die when it goes off screen and reset, then you can tap to shoot the plunger.
+* I have a separate model-view-controller. Some people think this is a waste of time but I definitely feel it helps split up the project into manageable packages.
+
+Plans for the future:
+* XML parser for levels, many people don't like xml because it has too much unnecessary data in the file. I am using xml because I don't care about filesize right now, android has an xml parser built in, I know how to implement the xml parser. Therefore it should be quick to implement over something like json.
+* I really like the entity IO system in the Source engine, it makes it easy to program parts of a level without code so I'm thinking of using this to trigger fun things in the game
+* The plan is to make the game flashy! Like flashing colours, sounds, particles all over the place like some sort of bullet hell game perhaps.
+* I have an idea that there could be item drops in the game like multiball or just extra points, I'll have a think about this.
+* Really cool UI - A lot of pinball games just try to replicate a pinball machine but this is a video game so we can do a lot more. There can be particle effects and stuff when you score points for example. I would particularly like some funky colour blending modes. Smooth camera transitions are a must too.
+
+We'll see how this goes.

@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Updates to Pinball & Source - JakeMadeThis</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/jquery.color.js"></script>
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/script.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31265649-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="row">
+    <div class="left side">
+      <ul class="nav" data-hover-color="#aa00ff">
+        <li><a href="home.html">jakemadethis</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="projects.html">projects</a></li>
+        <li><a href="experiments.html">experiments</a></li>
+      </ul>
+      
+      <ul class="tags" data-hover-color="#00aaff">
+      
+       <li><a href="pinball.html">pinball</a></li>
+      
+       <li><a href="source.html">source</a></li>
+      
+       <li><a href="blog.html">blog</a></li>
+      
+      </ul>
+      
+    </div>
+    <div class="center" data-hover-color="#ff6600">
+      
+      <div id="header">
+        <h1>Updates to Pinball & Source</h1>
+      </div>
+      <div id="page">
+        <p>A feature that has been asked many times for <a href="http://jakemadethis.com/p/source">Source</a> is the ability to zoom. I&#8217;ve spent a few days adding pinch-to-zoom functionality but there are still a few bugs so the update won&#8217;t be released for a while.</p>
+      <div class="image">
+        <img src="http://i.imgur.com/2GYEy.png" />
+        
+      </div>
+<p>For Pinball a lot has been done behind the scenes. Alpha/additive blending pretty much works.<br />
+You can now score points :)<br />
+The camera class now moves to follow the ball and automatically scales to fit the width of the game area inside the screen. This is good because Box2D wants units between 0.1 and 10 so I can say the ball is 0.3f radius and the camera will scale this so it looks good on the screen.<br />
+I&#8217;ve started work on the <span class="caps">XML</span> parser and the io system. My plan is to have some sort of pattern matching so you can refer to an array of elements and apply events to them like so:</p>
+<pre><code>&lt;light at="4,5" name="lights-0" /&gt;
+&lt;light at="5,5" name="lights-1" /&gt;
+&lt;light at="6,5" name="lights-2" /&gt;</code>
+
+<code>&lt;sensor at="4,5" name="sensors-0" /&gt;
+&lt;sensor at="5,5" name="sensors-1" /&gt;
+&lt;sensor at="6,5" name="sensors-2" /&gt;</code>
+
+<code>&lt;event for="sensors-#id" when="collision" target="lights-#id" action="toggle" /&gt;</code></pre>
+<p>That would be totally cool.</p>
+<p>I really need some sort of level editor. I&#8217;m thinking of switching to <a href="http://libgdx.badlogicgames.com/">libgdx</a> so I can write the game and run it on my desktop as well as android. This means I can have a built in level editor and use the mouse to add elements in the game rather than an imprecise finger on a phone screen.</p>
+      </div>
+
+      
+
+
+      <div id="footer" class="row">
+          jakemadethis
+      </div>
+
+    </div>
+    <div class="right side" data-hover-color="#ff6600">
+      
+        <p>
+          Written on 2011-12-29
+        </p>
+      
+      
+    </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+</body>
+</html>

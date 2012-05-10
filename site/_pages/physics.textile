@@ -1,0 +1,94 @@
+---
+title: Physics Engine
+tags: flash, projects
+excerpt: A physics engine
+---
+"View Game":http://jakemadethis.com/physics/physics.swf
+
+h1. Controls
+
+Left and right move the character, shift click and drag creates a new line
+
+h1. Info
+
+It's called platformer but really it's a physics demo. One day it might be a platformer game (I'm thinking something like Sonic the Hedgehog).
+This is written in pure Actionscript 3 with the Flex compiler.
+Some day soon I shall rewrite this because the innards are so badly written.
+
+h1. How the physics works
+
+If the character (ball) is penetrating the line (the distance from the line will be less than the radius) then the position is resolved perpendicularly so it just sits on the line. This works as it is but the ball never bounces and if it rolls into a wall then it will just stop.
+
+h1. Some code
+
+The most part of the code comes in the Vector class.
+
+distanceFromLine returns the distance the point is to a line vector (of infinite length).
+It will be negative if the point is below the line (right hand normal side)
+Here we assume our vector is a point in space.
+
+bc.. 
+public function distanceFromLine(p1:Vector, p2:Vector):Number
+{
+
+  // Vector from point1 of line to point2 of line
+  var line:Vector = new Vector(
+    p2.x - p1.x,
+    p2.y - p1.y
+  );
+
+  var linelength:Number = line.length;
+
+  // Normal to the line, as a unit vector
+  var normal:Vector = line.getLeftNormal();
+
+  // Vector from point1 of line to centre of ball
+  var res1:Vector = new Vector(
+    x - p1.x,
+    y - p1.y
+  );
+
+  // dot product of res1 and normal of line
+  var dotproduct:Number = res1.x * normal.x + res1.y * normal.y;
+  return dotproduct;
+}
+
+p. isInLineSection returns true if a point is in a line section.
+For example, if a new line perpendicular to the wall and which went through our point would touch the line or not.
+Here we assume our vector is a point in space.
+
+bc.. 
+public function isInLineSection(p1:Vector, p2:Vector):Boolean
+{
+  // Make vector from two points
+  var line:Vector = new Vector(
+    p2.x - p1.x,
+    p2.y - p1.y
+  );
+
+  // Vector from point1 of line to point
+  var res1:Vector = new Vector(
+    x - p1.x,
+    y - p1.y
+  );
+
+  var dotproduct1:Number = res1.x * line.x + res1.y * line.y;
+
+  // The point is too far left
+  if(dotproduct1 < 0)
+    return false;
+
+  // Vector from point2 of line to point
+  var res2:Vector = new Vector(
+    x - p2.x,
+    y - p2.y
+  );
+
+  var dotproduct2:Number = res2.x * line.x + res2.y * line.y;
+
+  // The point is too far right
+  if(dotproduct2 > 0)
+    return false;
+
+  return true;
+}

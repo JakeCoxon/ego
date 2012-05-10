@@ -1,0 +1,16 @@
+---
+title: Command Line Calculator
+tags: projects, c-sharp, java
+---
+
+fig. http://jakemadethis.com/calculators/cmdline.png
+
+The command line calculator is a C# program that does simple mathematic functions
+
+The program is split into three sections: Math, Parsing, and the interface so each section can be reused in separate programs.
+
+!http://i.imgur.com/da9Sc.png!
+
+Converted it to Java and updated it a bit. "Source":https://github.com/JakeCoxon/Calculator
+
+This calculator updates as you type.

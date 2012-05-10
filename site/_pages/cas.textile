@@ -1,0 +1,10 @@
+---
+title: Algebra System
+tags: projects, c-sharp
+excerpt: A program to expand and render equations
+---
+A simple computer algebra system. Currently only expands expressions and outputs in readable format.
+Equation rendering was written by me also.
+
+!http://i.imgur.com/WzJhy.png!
+!http://i.imgur.com/u0h6U.png!

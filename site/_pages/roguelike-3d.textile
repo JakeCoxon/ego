@@ -1,0 +1,5 @@
+---
+title: roguelike 3d
+tags: java, experiments
+---
+fig. http://i.imgur.com/FxEwF.png

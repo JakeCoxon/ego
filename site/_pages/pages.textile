@@ -1,0 +1,31 @@
+---
+title: Pages
+tags: projects, php
+excerpt: A content management system written in PHP
+---
+h1. What is this?
+
+This is 'pages', a content management system that I wrote in PHP a few hours on 2009-05-23. Yes, I could have thought of a more descriptive name but really, why bother? Many tweaks have been done since it started. This is the software for my site right now.
+
+I incorporated a tagging system so that any pages tagged with another page will become children of the parent page and be shown at the bottom of that page. For an example, this page is tagged with the word 'projects' and so it appears at the bottom of the projects page.
+
+h1. Source
+
+The source is on github: "Pages source":https://github.com/JakeCoxon/Pages
+
+h1. BBCode
+
+I use an extended version of "quickerUBB":http://www.roonaan.nl/hotscripts/index.php?script=quickerubb.php . I don't have any further information on it but it's pretty awesome.
+
+h1. What else?
+
+If a page doesn't exist it will ask to make one, similar to Wikipedia or something. You need to be logged in to do this.
+
+h1. htaccess
+
+In order to make the URLs look nicer you need to use this code
+
+bc.. 
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-z0-9-/]*)$  pages.php?page=$1 [L,QSA]

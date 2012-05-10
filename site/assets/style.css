@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: arial;
+  color: #444;
+  line-height: 1.6;
+  font-size: 14px;
+}
+h1, h2, h3 { 
+  margin: 20px 0;
+  color: #333;
+}
+div {
+  display: block;
+}
+a {
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #f60;
+  padding: 2px;
+  margin-top: 1px;
+}
+a h1, a h2, a h3 {
+  color: inherit;
+}
+a:hover {
+  background-color: #f60;
+  color: white;
+}
+#container {
+  margin: auto;
+  width: 1000px;
+}
+#header h1 {
+  text-align: center;
+  margin: 10px 0px 20px 0;
+  padding: 0 20px 10px 20px;
+  border-bottom: 2px solid #333;
+}
+#header h1 a {
+  border: 0;
+}
+.row {
+  margin: 20px 0;
+}
+.side {
+  float: left;
+  width: 200px;
+  padding-top: 70px;
+}
+.left {
+}
+.center {
+  float: left;
+  width: 600px;
+}
+.right {
+  text-align: right;
+}
+.right div {
+  margin-left: 20px;
+}
+.clear {
+  clear: both;
+}
+.image-container {
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+#header .image {
+  width: 500px;
+  height: 200px;
+  /*border-radius: 20px;*/
+  margin: auto;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 50px #bbb;
+}
+#footer {
+  font-size: 11px;
+}
+#page pre {
+  border-left: 4px solid #333;
+  background-color: #ccc;
+  padding: 10px;
+  margin: 0 0 0 20px;
+  word-wrap: break-word;
+}
+
+#page .image {
+  padding: 10px;
+  text-align: center;
+}
+#page .image img {
+  box-shadow: 0 0 50px #bbb;
+}
+#page .image span {
+  display: block;
+  font-weight: bold;
+}
+#page p {
+}
+.side ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 1.6;
+}
+.side ul li {
+  margin: 4px 0;
+}
+.side h1 {
+  font-size: 13px;
+}
+
+ul.nav {
+  margin-top: 10px;
+}
+ul.nav, ul.tags {
+  margin-right: 50px;
+}
+.side ul a {
+  display: block;
+  border: 0;
+  padding: 4px;
+}
+ul.nav a:hover {
+  background-color: #a0f;
+}
+ul.tags a:hover {
+  background-color: #0af;
+}
+ul.tags {
+  border-top: 1px solid #ccc;
+}
+#content {
+  min-height: 200px;
+}
+ul#childlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#childlist a {
+  border: 0;
+  margin: 20px 0;
+  padding: 0 10px;
+  display: block;
+}
+#childlist a h2 {
+  margin: 0;
+}
+#childlist li p {
+  margin: 0 0 0 10px;
+  font-weight: normal;
+}

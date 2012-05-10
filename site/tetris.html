@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>Tetris - JakeMadeThis</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/jquery.color.js"></script>
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/script.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31265649-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="row">
+    <div class="left side">
+      <ul class="nav" data-hover-color="#aa00ff">
+        <li><a href="home.html">jakemadethis</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="projects.html">projects</a></li>
+        <li><a href="experiments.html">experiments</a></li>
+      </ul>
+      
+      <ul class="tags" data-hover-color="#00aaff">
+      
+       <li><a href="projects.html">projects</a></li>
+      
+       <li><a href="c.html">c</a></li>
+      
+      </ul>
+      
+    </div>
+    <div class="center" data-hover-color="#ff6600">
+      
+      <div id="header">
+        <h1>Tetris</h1>
+      </div>
+      <div id="page">
+              <div class="image">
+        <img src="http://jakemadethis.com/tetris/tetris1.png" />
+        
+      </div>
+<p>This is a tetris clone written in C for Playstation Portable (Homebrew) with the <span class="caps">PSPSDK</span> and <span class="caps">SDL</span> library.</p>
+<p>It has the basic features of a regular tetris game plus ghost preview, highscores (by reading and writing to a binary file), hold pieces, and a preview of the next six blocks.</p>
+<p>The code is no longer up for download, sorry!</p>
+<h1>Tetrimonos</h1>
+<p>The tetrimonos are stored as a 4 &#215; 4 matrix (wide enough to fit the 4 &#215; 1 tetrimono and rotate) so rotations are done simply by [x1,y1] = [y, x-3]. Checking if a block can drop down one row is done by looping through each cell and comparing it to the relevant cell on the main board. Once the block has been placed or has &#8216;died&#8217;, each full cell is copied onto the main board and replaced with the relevent number from one to seven (zero is an empty cell).</p>
+<p>One problem I had with rotating the block inside a 4 &#215; 4 grid, the piece seemed to shift around when placed on the main board. To overcome this, the middle cell of each block was numbered 2. This is the index cell. The [x,y] co-ordinate refers to this point of the block. When the piece is rotated it keeps the position of the &#8216;2&#8217; cell, giving the illusion that the block is rotated around this point. <br />
+4 &#215; 4 blocks are a special case where all cells are numbered 2.</p>
+<pre><code> {{0, 1, 0, 0},  // Blue
+ {0, 2, 0, 0},
+ {1, 1, 0, 0},
+ {0, 0, 0, 0}},</code></pre>
+<h1>Randomise System</h1>
+<p>There was another problem I had when testing the game out, blocks were distributed very unrealistically, and sometimes making the game very hard to play. For example, people were getting very frustrated having three square blocks in a row.</p>
+<p>The new randomize system is made up using two &#8216;bags&#8217; of all seven blocks, the blocks are sorted randomly and pulled one at a time when needed. Once one bag is emptied, it is replaced by the second bag and the second bag is refilled randomly.</p>
+<pre><code>// example
+bag1 = {6,3,7,1,5,2,4}
+bag2 = {2,6,4,3,1,5,7}</code></pre>
+<p>This has a few effects, the first is that two of the same blocks are never more than thirteen apart (as apposed to potentially an infinite amount if using a real random system). <br />
+On the other hand, two blocks are rarely directly next to each other. This can only happen at the beginning and end of each bag, so the maximum times it can happen is every seven blocks. (And again, using a real random system you can potentially get an infinite number of the same blocks every go).</p>
+<pre><code>void generateRandomBag(int bag[7])
+{
+  // Fill the bag with -1s
+  memset(bag, -1, 7 * sizeof(int));</code>
+	
+<code>  int num = 0;</code>
+	
+<code>  // Loop untill all bag slots are empty
+  int block = 0;
+  while(num &lt; 7)
+  {
+    int r = rand() % 7;  // random between 0 and 7
+    if(bag[r] == -1)  // Bag slot 'r' is empty
+    {
+      bag[r] = block;
+      block ++;
+      num ++;
+    }
+  }
+}</code></pre>
+<h1>Scoring</h1>
+<p>The score system looks something like this (pseudocode). Levels start at zero and increase after ten full lines up to a maximum of twenty.</p>
+<pre><code>if linesFilled == 1
+  score += 40 * (level+1)</code>
+	
+<code>if linesFilled == 2
+  score += 100 * (level+1)</code>
+	
+<code>if linesFilled == 3
+  score += 300 * (level+1)</code>
+	
+<code>if linesFilled == 4
+  score += 1200 * (level+1)</code></pre>
+<p>As you can see, getting a four full lines (1200 points on level 0) is much more benificial than getting four seperate lines (160 points on level 0).</p>
+<h1>Highscores</h1>
+<p>Highscores are saved in binary scores file and loaded into two parallel arrays at startup. Below of the functions for checking and inserting a new highscore.</p>
+<pre><code>int hasHighScore(int score)
+{
+  return score &gt; score_scores[9];
+}</code>
+
+<code>// Returns the index where score is inserted or -1.
+int insertHighScore(char name[16], int score)
+{
+  int i;</code>
+
+<code>  // Start loop from the end and work backwards.
+  for(i = 9; i &gt;= 0; i --)
+  {
+    if(i == 0 || score &lt;= score_scores[i-1])
+    {
+      memcpy(&amp;score_names[i], name, sizeof(char) * 16);
+      score_scores[i] = score;</code>
+			
+<code>      return i;</code>
+			
+<code>    }
+    else
+    {
+      memcpy(&amp;score_names[i], score_names[i-1], sizeof(char) * 16);</code>
+	
+<code>      score_scores[i] = score_scores[i-1];
+    }
+  }
+  return -1;
+}</code></pre>
+<p>This heavily relies on the fact that the array is already sorted from highest to lowest. Just got to make sure it never gets unsorted.</p>
+      </div>
+
+      
+
+
+      <div id="footer" class="row">
+          jakemadethis
+      </div>
+
+    </div>
+    <div class="right side" data-hover-color="#ff6600">
+      
+      
+    </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+</body>
+</html>

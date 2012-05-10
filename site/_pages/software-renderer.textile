@@ -1,0 +1,7 @@
+---
+title: 3d Software Renderer
+tags: java, experiments
+---
+fig. http://i.imgur.com/UkKLW.gif
+
+fig. http://i.imgur.com/rBZYf.png

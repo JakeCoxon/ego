@@ -1,0 +1,46 @@
+---
+title: LogicGator
+tags: projects, vb
+excerpt: A logic gate simulator written in Visual Basic
+---
+LogicGator or 'Logic Gator' is a program I wrote for my A-level computing project. Its aim is to help A-level students visualise logic gates with the flow of logic and also to help teach them simple simplification.
+
+The program was written in Visual Basic .NET so you will need a newish version of the .NET runtime.
+
+"Download":http://jakemadethis.com/logicgator/LogicGator20110526.zip
+
+h1. Main Canvas
+
+I first tried making each gate a .NET control but I ran into the problem that controls can't easily have a transparent background. I really wanted this because gates can easily overlap and having a white rectangle under everything made the program look ugly.
+
+To get around this problem I had to make my own 'canvas' class and do everything manually. This meant:
+* Creating my own control base class - this class holds a location and size.
+* Drawing all the gates myself - the canvas class must loop through each gate and draw the appropriate image. I wanted the user to be able to show gates that were underneath other gates so when the user clicks a gate it gets brought to the top. This is done by relocating the gate in the linked list to the top.
+* Handing mouse clicking/dragging - every time the mouse is pressed I needed to calculate which control was pressed and move it if the user was trying to drag.
+* Handle linking nodes - The connection between two gates is drawn as a few straight lines. I had to calculate which node the user was clicking and draw the lines from it. The lines also 'snap' to the nodes when the mouse gets within 10 pixels, this is to give the user better accuracy since the nodes are very small.
+
+In the end it was worth it because it gave me more control over drawing.
+
+h1. Expressions
+
+In my program, expressions are trees describing how the gates are linked up. This is so I can manipulate the circuit algorithmically.
+
+To convert the diagram that a user has made into a tree I do this:
+First start from the gate connected to the output control.
+Create a tree node depending on this gate, an AND gate make an AND tree node for example
+If this gate is a NOT gate though: go back 1 step and apply it to this gate's parent gate and invert the operator. AND tree nodes because NAND tree nodes etc.
+Apply this algorithm to the two inputs.
+When we get to an input control add an input node and stop
+If the algorithm can't do something, throw an error
+
+h1. Simplification
+
+The simplification techniques are basic. NOT 0 turns into 1, X+0 turns into X etc. Along with De Morgan's laws.
+The algorithm searches the whole tree to find a match and then replaces it.
+
+h1. Screenshots
+
+!http://jakemadethis.com/logicgator/screenshot1.png!
+!http://jakemadethis.com/logicgator/screenshot2.png!
+!http://jakemadethis.com/logicgator/screenshot3.png!
+!http://jakemadethis.com/logicgator/screenshot4.png!
