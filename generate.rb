@@ -1,7 +1,8 @@
 require 'erb'
 require 'RedCloth'
 
-require './read'
+require './ext.rb'
+require './read.rb'
 require './page.rb'
 
 dir = 'site'

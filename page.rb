@@ -38,4 +38,5 @@ class Post < Page
 
   def blog_post?;    true; end
   def monthly;       date.strftime("%b %Y"); end
+  def yearly;        date.strftime("%Y"); end
 end

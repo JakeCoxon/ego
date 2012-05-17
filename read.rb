@@ -1,21 +1,12 @@
-class Array 
-  # maps an array into a hash
-  def to_h(&block) 
-    Hash[*self.map { |v| block.call(v) }.flatten(1)] 
-  end
+def remove_args(lines)
+  lines.drop_first.shift(lines.index {|l| l.strip == "---"} + 1).drop_last
 end
 
-
 def parse_args(lines)
-  args = {}
-  if lines[0].strip == "---" then
-    lines.shift()
-    while (line = lines.shift()).strip != "---" do
-      line.strip.match(/^(.+): (.+)$/) or raise Exception.new("Invalid argument #{line}")
-      args[$1.to_sym] = $2
-    end
-  end
-  args
+  remove_args(lines).to_h do |line|
+    line.strip.match(/^(.+): (.+)$/) or raise Exception.new("Invalid arg: #{line}")
+    [$1.to_sym, $2]
+  end if lines[0].strip == "---"
 end
 
 def read_files_as_hash(glob)
@@ -27,21 +18,18 @@ end
 
 def read_pages(glob, type)
   read_files_as_hash glob do |filename, name, lines|
-    args = parse_args(lines)
+    args = parse_args(lines) || {}
     type.new(name, lines.join, args)
   end
 end
 def read_layouts(glob)
   read_files_as_hash glob do |filename, name, lines|
-    layout = ERB.new(lines.join)
-    layout.filename = filename
-    layout
+    ERB.new(lines.join).chain(:filename=, filename)
   end
 end
 
-def write_page(file, content)
-  File.open(file, 'w') do |file|
-    file.write(content)
+def write_page(filename, content)
+  File.open(filename, 'w') do |f|
+    f.write(content) and puts "Written: #{filename}"
   end
-  puts "Written: #{file}"
 end

@@ -47,7 +47,7 @@
 
       <% if name == 'blog' %>
         <ul id="childlist">
-        <% child_posts.group_by(&:monthly).each do |date, posts| %>
+        <% child_posts.group_by(&:yearly).each do |date, posts| %>
           <%= date %>
           <% posts.each do |post| %>
           <li>

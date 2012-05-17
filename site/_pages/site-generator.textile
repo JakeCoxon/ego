@@ -1,0 +1,28 @@
+---
+title: Ruby Site Generator
+tags: ruby, projects
+excerpt: A program to generate static HTML files from templates
+---
+h1. About
+
+This is a small program to generate static HTML files from a templates and a textile document in a similar way to "Jekyll":https://github.com/mojombo/jekyll . My program is slightly different because it is more based around pages and tags rather than blog posts.
+
+Pros of using a static site generator are: Page load speed, ability to test site locally, no security issues and no server-side technology is needed other than serving HTML.
+
+"View code on GitHub.":https://github.com/JakeCoxon/SiteGenerator
+This is the code to my personal website.
+
+h1. Tagging
+
+Pages/posts can be tagged with another page to be included on that page. This means any page can be a tag listing itself, different to how a lot of content management systems have tag listings on a seperate URL (eg /tags/projects). I think this is a better way to organise pages so you can use a page as a central hub of information.
+
+h1. Meta Data
+
+Pages + posts have optional meta data defined the same way as Jekyll. This data can be read in layouts by @arg[:key]@
+
+bc. ---
+title: My title
+tags: my, tags, etc
+key: value
+---
+
