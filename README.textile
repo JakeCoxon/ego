@@ -14,10 +14,9 @@ key: value
 
 h2. To generate pages
 
-<code>
+bc..
 cd bin
 ruby generate.rb
-</code>
 
 h2. To sync with server
 
