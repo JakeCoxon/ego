@@ -5,18 +5,12 @@ module RedCloth::Formatters::HTML
   end
 
   def fig(opts)
-    opts[:text].match(/^(?:(.+)\s*\|\s*)?(.+)$/)
-    label = $1
-    img = $2
-    label_span = "<span>#{label}</span>" if label
-    <<-HTML
-      <div class="image">
-        <img src="#{img}" />
-        #{label_span}
-      </div>
-    HTML
+    match = opts[:text].match(/^(?:(?<label>.+)\s*\|\s*)?(?<img>.+)$/)
+    label_span = "\n<span>#{match[:label]}</span>" if match[:label]
+    %Q{<div class="image">
+        <img src="#{match[:img]}" /> #{label_span}
+      </div>}
   end
-
 
   private
 

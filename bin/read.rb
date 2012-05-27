@@ -16,10 +16,10 @@ def read_files_as_hash(glob)
   end
 end
 
-def read_pages(glob, type)
+def read_pages(glob, options)
   read_files_as_hash glob do |filename, name, lines|
     args = parse_args(lines) || {}
-    type.new(name, lines.join, args)
+    options[:as].new(name, lines.join, args)
   end
 end
 def read_layouts(glob)

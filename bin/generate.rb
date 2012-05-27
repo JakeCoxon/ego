@@ -5,21 +5,18 @@ require './ext.rb'
 require './read.rb'
 require './page.rb'
 
-dir = 'site'
+dir = '../site'
 
 def process_tags(pages)
-  newpages = {}
-  pages.each do |name, page|
+  pages.dup.each do |name, page|
     page.tags.each do |tag|
-      parent = pages[tag] || (newpages[tag] ||= Page.new(tag, "", {}))
-      parent.childs << page
+      (pages[tag] ||= Page.new(tag, "", {})).childs << page
     end
   end
-  pages.merge! newpages
 end
 
-pages = read_pages "#{dir}/_pages/*.textile", Page
-pages.merge! read_pages "#{dir}/_posts/*.textile", Post
+pages = read_pages "#{dir}/_pages/*.textile", :as => Page
+pages.merge! read_pages "#{dir}/_posts/*.textile", :as => Post
 layouts = read_layouts "#{dir}/_layouts/*.html"
 
 process_tags pages
