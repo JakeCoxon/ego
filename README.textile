@@ -14,7 +14,7 @@ key: value
 
 h2. To generate pages
 
-bc..
+bc.. 
 cd bin
 ruby generate.rb
 
