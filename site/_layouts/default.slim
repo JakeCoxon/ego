@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    title #{title} - jakemadethis
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+    script src="assets/jquery.color.js"
+    script src="assets/script.js"
+    link rel="stylesheet" href="assets/style.css"
+    == partial '_tracking'
+  body
+    #container
+      .row
+        .left.side
+          ul.nav data-hover-color="#aa00ff"
+            li: a href="home.html" jakemadethis
+            li: a href="blog.html" blog
+            li: a href="projects.html" projects
+            li: a href="experiments.html" experiments
+          - if has_tags?
+            ul.tags data-hover-color="#00aaff"
+              - tags.each do |tag|
+                li: a href="#{tag}.html" = tag
+
+        .center data-hover-color="#ff6600"
+          #header
+            h1 = title
+          #page
+            == to_html
+
+          - if name == 'blog'
+            ul#childlist
+              - child_posts.group_by(&:yearly).each do |date, posts|
+                = date
+                - posts.each do |post|
+                  li
+                    a href="#{post.name}.html"
+                      h2 = post.title
+                      - if post.has_arg? :excerpt
+                        p = post.args[:excerpt]
+          - elsif has_pages?
+            ul#childlist
+              - child_pages.each do |child|
+                li
+                  a href="#{child.name}.html"
+                    h2 = child.title
+                    - if child.has_arg? :excerpt
+                      p = child.args[:excerpt]
+
+          #footer.row
+            | jakemadethis
+
+        .right.side data-hover-color="#ff6600"
+          - if blog_post?
+            p Written on #{date}
+          - if has_posts? && name != 'blog'
+            div
+              h1 Blog Posts
+              ul
+                - child_posts.each do |post|
+                  li: a href="#{post.name}.html" = post.title
+
+
+

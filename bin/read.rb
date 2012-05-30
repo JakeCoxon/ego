@@ -1,30 +1,24 @@
 def remove_args(lines)
-  lines.drop_first.shift(lines.index {|l| l.strip == "---"} + 1).drop_last
+  lines.drop_first.shift(lines.index {|l| l.strip == "---"} + 1).drop_last if lines[0].strip == "---"
 end
 
 def parse_args(lines)
-  remove_args(lines).to_h do |line|
+  return remove_args(lines).to_h do |line|
     line.strip.match(/^(.+): (.+)$/) or raise Exception.new("Invalid arg: #{line}")
     [$1.to_sym, $2]
-  end if lines[0].strip == "---"
-end
-
-def read_files_as_hash(glob)
-  Dir.glob(glob).to_h do |filename|
-    name = filename.match("/([a-zA-Z0-9\-]+)\.[^/]+$")[1]
-    [name, yield(filename, name, IO.readlines(filename))]
-  end
+  end, lines
 end
 
 def read_pages(glob, options)
-  read_files_as_hash glob do |filename, name, lines|
-    args = parse_args(lines) || {}
-    options[:as].new(name, lines.join, args)
+  Dir.glob(glob).to_h do |filename|
+    name = filename.match(/\/([a-zA-Z0-9\-]+)\.[^\/]+$/)[1]
+    [name, options[:as].new(name, *parse_args(IO.readlines(filename)))]
   end
 end
+
 def read_layouts(glob)
-  read_files_as_hash glob do |filename, name, lines|
-    ERB.new(lines.join).chain(:filename=, filename)
+  Dir.glob(glob).to_h do |filename|
+    [$1, Slim::Template.new(filename)] if filename.match(/\/([_a-zA-Z0-9\-]+)\.[^\/]+$/)
   end
 end
 

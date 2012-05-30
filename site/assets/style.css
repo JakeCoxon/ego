@@ -99,6 +99,9 @@ a:hover {
   display: block;
   font-weight: bold;
 }
+#page .image iframe {
+  box-shadow: 0 0 50px #bbb;
+}
 #page p {
 }
 .side ul {

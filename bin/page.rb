@@ -3,9 +3,9 @@ require './redcloth_ext'
 class Page
   attr_reader :name, :content, :args, :title, :childs, :tags
 
-  def initialize(name, content, args)
+  def initialize(name, args, content)
     @name = name
-    @content = content
+    @content = if content.is_a? Array then content.join else content end
     @args = args
     @title = args[:title] || name.capitalize
     @tags = args[:tags] ? args[:tags].strip.split(/\s*,\s*/) : []
@@ -23,14 +23,14 @@ class Page
   def has_tags?;     !@tags.empty?; end
   def has_childs?;   !@childs.empty?; end
 
-  def get_binding;   binding; end
+  def partial(name); render(name, self); end
   def to_html;       @html ||= RedCloth.new(content).to_html; end
 end
 
 class Post < Page
   attr_reader :date
 
-  def initialize(name, content, args)
+  def initialize(name, args, content)
     super
     @date = Date.parse(args[:date]) or throw Exception.new("#{name} has an invalid date")
     @tags << 'blog'

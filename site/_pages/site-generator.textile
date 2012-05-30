@@ -9,7 +9,7 @@ This is a small program to generate static HTML files from a templates and a tex
 
 Pros of using a static site generator are: Page load speed, ability to test site locally, no security issues and no server-side technology is needed other than serving HTML.
 
-"View code on GitHub.":https://github.com/JakeCoxon/SiteGenerator
+"View code on GitHub.":https://github.com/JakeCoxon/site-generator
 This is the code to my personal website.
 
 h1. Tagging

@@ -7,5 +7,8 @@ fig. http://i.imgur.com/wpmxR.png
 
 Pinball is a game I'm currently working on for Android
 
-"Video 1":http://www.youtube.com/watch?v=HI-whGPilAo
-"Video 2":http://www.youtube.com/watch?v=V7irKMQpwEU
+h1. Videos
+
+video. http://www.youtube.com/watch?v=HI-whGPilAo
+
+video. http://www.youtube.com/watch?v=V7irKMQpwEU
