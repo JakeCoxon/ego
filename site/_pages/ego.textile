@@ -1,5 +1,5 @@
 ---
-title: Ruby Site Generator
+title: EGO
 tags: ruby, projects
 excerpt: A program to generate static HTML files from templates
 ---
@@ -9,8 +9,8 @@ This is a small program to generate static HTML files from a templates and a tex
 
 Pros of using a static site generator are: Page load speed, ability to test site locally, no security issues and no server-side technology is needed other than serving HTML.
 
-"View code on GitHub.":https://github.com/JakeCoxon/site-generator
-This is the code to my personal website.
+"View code on GitHub.":https://github.com/JakeCoxon/ego
+This is the code to my personal website. Soon I will create an empty site for you to start from scratch
 
 h1. Tagging
 

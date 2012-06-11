@@ -1,4 +1,4 @@
-h1. SiteGenerator
+h1. EGO
 
 Generates static HTML pages from ERB templates and textile documents
 
@@ -14,8 +14,7 @@ key: value
 
 h2. To generate pages
 
-bc.. cd bin
-ruby generate.rb
+bc.. ruby bin/ego.rb
 
 h2. To sync with server
 

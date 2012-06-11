@@ -25,6 +25,8 @@ html
           #header
             h1 = title
           #page
+            - if blog_post?
+              small Written on #{date}
             == to_html
 
           - if name == 'blog'
@@ -50,8 +52,6 @@ html
             | jakemadethis
 
         .right.side data-hover-color="#ff6600"
-          - if blog_post?
-            p Written on #{date}
           - if has_posts? && name != 'blog'
             div
               h1 Blog Posts

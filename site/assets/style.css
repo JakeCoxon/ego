@@ -102,6 +102,12 @@ a:hover {
 #page .image iframe {
   box-shadow: 0 0 50px #bbb;
 }
+#page small {
+  color: #aaa;
+  font-size: 11px;
+  text-align: right;
+  display: block;
+}
 #page p {
 }
 .side ul {
