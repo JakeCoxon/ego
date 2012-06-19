@@ -1,16 +1,13 @@
 ---
-title: EGO
+title: Ego
 tags: ruby, projects
 excerpt: A program to generate static HTML files from templates
 ---
-h1. About
+Ego is a really tiny (it can't be more than about 150 lines) Ruby program to generate static HTML files. It generates these from a template and a textile document in a similar way to "Jekyll.":https://github.com/mojombo/jekyll Ego is slightly different because it is more based around pages and tags rather than blog posts.
 
-This is a small program to generate static HTML files from a templates and a textile document in a similar way to "Jekyll":https://github.com/mojombo/jekyll . My program is slightly different because it is more based around pages and tags rather than blog posts.
+Why would you want to generate static HTML? Well, faster page load speed, ability to test site locally, no security issues and no crazy server-side technology is needed.
 
-Pros of using a static site generator are: Page load speed, ability to test site locally, no security issues and no server-side technology is needed other than serving HTML.
-
-"View code on GitHub.":https://github.com/JakeCoxon/ego
-This is the code to my personal website. Soon I will create an empty site for you to start from scratch
+You can view the code to this site "on GitHub.":https://github.com/JakeCoxon/ego Eventually I'll create an empty shell site as a base.
 
 h1. Tagging
 
@@ -20,7 +17,8 @@ h1. Meta Data
 
 Pages + posts have optional meta data defined the same way as Jekyll. This data can be read in layouts by @arg[:key]@
 
-bc. ---
+bc. 
+---
 title: My title
 tags: my, tags, etc
 key: value

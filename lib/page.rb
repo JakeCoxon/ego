@@ -2,10 +2,12 @@ module Ego
   class Page
     attr_reader :name, :content, :args, :title, :childs, :tags
 
+    MATCH = /(?:^---\n(?<front>.+?)\n^---\n)?(?<content>.+)/m
+
     def self.blank(name); Page.new(nil, name, ' '); end
 
     def initialize(filename, name=nil, content=nil)
-      parse_frontmatter (content || IO.read(filename)).split $/
+      parse_frontmatter (content || IO.read(filename)).gsub(/(\r?\n)|\r/, "\n")
 
       @name = name || filename.match(PAGE_MATCH)[:name]
       @title = @args[:title] || @name.capitalize
@@ -13,16 +15,12 @@ module Ego
       @childs = []
     end
 
-    def parse_frontmatter(lines)
-      yaml = (lines[0].strip == "---" ?
-        lines.drop_first.shift(lines.index {|l| l.strip == "---"} + 1).drop_last : nil)
-
-      @args = yaml.to_h do |line|
-        line.strip.match(/^(.+): (.+)$/) or raise Exception.new("Invalid arg: #{line}")
+    def parse_frontmatter(content)
+      @args = (m = content.match(MATCH))[:front].to_s.split(/\n/).to_h do |line|
+        line.match(/^(.+): (.+)$/) or raise Exception.new("Invalid arg: #{line}")
         [$1.to_sym, $2]
       end
-    
-      @content = lines.join $/
+      @content = m[:content]
     end
 
     def child_posts;   @child_posts ||= @childs.select(&:blog_post?).reverse(); end

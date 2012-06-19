@@ -2,6 +2,6 @@
 title: Home Page
 author: Jake Coxon
 ---
-My name is Jake Coxon. I am a 20 year old undergrad at the University of York, UK.
+Jake Coxon is an awesome 20 year old undergrad at the University of York, UK.
 
-I can write code in Java, PHP, Javascript, Ruby, C#, Lua and I am currently working on a few Android projects.
+He can code pretty well in Java, PHP, Javascript, Ruby, C#, Lua and is currently working on a few Android projects: "Source":source.html and "Pinball":pinball.html as well as freelancing in Ruby

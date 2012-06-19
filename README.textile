@@ -1,4 +1,4 @@
-h1. EGO
+h1. Ego
 
 Generates static HTML pages from ERB templates and textile documents
 
@@ -19,3 +19,7 @@ bc.. ruby bin/ego.rb
 h2. To sync with server
 
 <code>rsync -v site/*.html user@host.com:www/</code>
+
+h2. License
+
+None yet
